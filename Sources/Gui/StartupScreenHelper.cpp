@@ -56,6 +56,7 @@ SPADES_SETTING(r_videoWidth);
 SPADES_SETTING(r_videoHeight);
 SPADES_SETTING(r_fullscreen);
 SPADES_SETTING(r_fogShadow);
+SPADES_SETTING(r_fogEnabled);
 SPADES_SETTING(r_lensFlare);
 SPADES_SETTING(r_lensFlareDynamic);
 SPADES_SETTING(r_blitFramebuffer);

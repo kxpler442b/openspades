@@ -177,7 +177,7 @@ namespace spades {
 
 			void SetGameMap(stmp::optional<client::GameMap &>) override;
 			void SetFogColor(Vector3 v) override;
-			void SetFogDistance(float f) override { fogDistance = f; }
+			void SetFogDistance(float f) override;
 
 			Vector3 GetFogColor() { return fogColor; }
 			float GetFogDistance() { return fogDistance; }

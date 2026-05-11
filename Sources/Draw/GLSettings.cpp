@@ -40,6 +40,7 @@ DEFINE_SPADES_SETTING(r_depthPrepass, "1");
 DEFINE_SPADES_SETTING(r_dlights, "1");
 DEFINE_SPADES_SETTING(r_exposureValue, "0");
 DEFINE_SPADES_SETTING(r_fogShadow, "0");
+DEFINE_SPADES_SETTING(r_fogEnabled, "1");
 DEFINE_SPADES_SETTING(r_fxaa, "1");
 DEFINE_SPADES_SETTING(r_hdr, "0");
 DEFINE_SPADES_SETTING(r_hdrAutoExposureMin, "-1.5");

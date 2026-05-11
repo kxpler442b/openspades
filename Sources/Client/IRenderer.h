@@ -121,6 +121,7 @@ namespace spades {
 			virtual void SetGameMap(stmp::optional<GameMap &>) = 0;
 
 			virtual void SetFogDistance(float) = 0;
+			virtual float GetFogDistance() = 0;
 			virtual void SetFogColor(Vector3) = 0;
 
 			/** Starts rendering a scene and waits for additional objects. */

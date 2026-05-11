@@ -46,6 +46,7 @@ namespace spades {
 			TypedItemHandle<bool> r_dlights             { *this, "r_dlights" };
 			TypedItemHandle<float> r_exposureValue      { *this, "r_exposureValue" };
 			TypedItemHandle<int> r_fogShadow            { *this, "r_fogShadow", ItemFlags::Latch };
+			TypedItemHandle<bool> r_fogEnabled          { *this, "r_fogEnabled" };
 			TypedItemHandle<bool> r_fxaa                { *this, "r_fxaa" };
 			TypedItemHandle<bool> r_hdr                 { *this, "r_hdr", ItemFlags::Latch };
 			TypedItemHandle<float> r_hdrAutoExposureMin { *this, "r_hdrAutoExposureMin" };

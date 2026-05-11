@@ -193,9 +193,9 @@ namespace spades {
 				temporalAAFilter.reset(new GLTemporalAAFilter(*this));
 			}
 
-			if (settings.ShouldUseFogFilter2()) {
+			if (settings.r_fogEnabled && settings.ShouldUseFogFilter2()) {
 				fogFilter2.reset(new GLFogFilter2(*this));
-			} else if (settings.r_fogShadow) {
+			} else if (settings.r_fogEnabled && settings.r_fogShadow) {
 				GLFogFilter(*this);
 			}
 
@@ -389,8 +389,21 @@ namespace spades {
 				smoothedFogColor = fogColor;
 		}
 
+		void GLRenderer::SetFogDistance(float distance) {
+			if (settings.r_fogEnabled) {
+				fogDistance = distance;
+			} else {
+				// Disable fog by setting distance to a very high value
+				fogDistance = 1000000.f;
+			}
+		}
+
+		float GLRenderer::GetFogDistance() {
+			return fogDistance;
+		}
+
 		Vector3 GLRenderer::GetFogColorForSolidPass() {
-			if (settings.r_fogShadow && mapShadowRenderer) {
+			if (settings.r_fogEnabled && settings.r_fogShadow && mapShadowRenderer) {
 				return MakeVector3(0, 0, 0);
 			} else {
 				return GetFogColor();
@@ -825,7 +838,7 @@ namespace spades {
 					std::swap(view, viewMatrix);
 					projectionViewMatrix = projectionMatrix * viewMatrix;
 
-					if (settings.r_fogShadow && mapShadowRenderer) {
+					if (settings.r_fogEnabled && settings.r_fogShadow && mapShadowRenderer) {
 						GLProfiler::Context p(*profiler, "Volumetric Fog");
 
 						GLFramebufferManager::BufferHandle handle;
@@ -914,7 +927,7 @@ namespace spades {
 					GLProfiler::Context p(*profiler, "Preparation");
 					handle = fbManager->StartPostProcessing();
 				}
-				if (settings.r_fogShadow && mapShadowRenderer) {
+				if (settings.r_fogEnabled && settings.r_fogShadow && mapShadowRenderer) {
 					GLProfiler::Context p(*profiler, "Volumetric Fog");
 					if (settings.ShouldUseFogFilter2()) {
 						if (!fogFilter2) {
