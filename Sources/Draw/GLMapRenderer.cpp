@@ -124,7 +124,7 @@ namespace spades {
 		void GLMapRenderer::RealizeChunks(spades::Vector3 eye) {
 			SPADES_MARK_FUNCTION();
 
-			float cullDistance = 128.f;
+			float cullDistance = 256.f;
 			float releaseDistance = 160.f;
 			for (int i = 0; i < numChunks; i++) {
 				float dist = chunks[i]->DistanceFromEye(eye);

@@ -95,7 +95,7 @@ namespace spades {
 		      lensDustFilter(NULL),
 		      autoExposureFilter(NULL),
 		      lastColorBufferTexture(0),
-		      fogDistance(128.f),
+		      fogDistance(256.f),
 		      renderingMirror(false),
 		      lastTime(0),
 		      duringSceneRendering(false) {

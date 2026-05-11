@@ -109,7 +109,7 @@ namespace spades {
 			SPADES_MARK_FUNCTION();
 			SPLog("Initializing...");
 
-			renderer->SetFogDistance(128.f);
+			renderer->SetFogDistance(256.f);
 			renderer->SetFogColor(MakeVector3(.8f, 1.f, 1.f));
 
 			chatWindow = stmp::make_unique<ChatWindow>(this, &GetRenderer(),

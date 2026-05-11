@@ -227,7 +227,7 @@ namespace spades {
 			reprojectionMatrix.SetValue(diffMatrix);
 			inverseVP.SetValue(1.f / input.GetWidth(), 1.f / input.GetHeight());
 			viewProjectionMatrixInv.SetValue(inverseNewMatrix);
-			fogDistance.SetValue(128.f);
+			fogDistance.SetValue(256.f);
 
 			// Perform temporal AA
 			// TODO: pre/post tone mapping to prevent aliasing near overbright area

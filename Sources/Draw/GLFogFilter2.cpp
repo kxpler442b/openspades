@@ -228,7 +228,7 @@ namespace spades {
 			                        fogTransmission.y * radiosityBrightness + radiosityOffset,
 			                        fogTransmission.z * radiosityBrightness + radiosityOffset);
 
-			fogDistance.SetValue(128.f);
+			fogDistance.SetValue(256.f);
 
 			lensColorTexture.SetValue(0);
 			lensDepthTexture.SetValue(1);

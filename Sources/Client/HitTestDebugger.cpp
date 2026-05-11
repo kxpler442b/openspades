@@ -67,7 +67,7 @@ namespace spades {
 			SPADES_MARK_FUNCTION();
 
 			renderer->SetFogColor(MakeVector3(0.f, 0.f, 0.f));
-			renderer->SetFogDistance(128.f);
+			renderer->SetFogDistance(256.f);
 
 			stmp::optional<Player &> localPlayer = world->GetLocalPlayer();
 

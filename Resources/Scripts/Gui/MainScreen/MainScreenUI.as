@@ -70,7 +70,7 @@ namespace spades {
             // load map
             @renderer.GameMap = GameMap("Maps/Title.vxl");
             renderer.FogColor = Vector3(0.1f, 0.10f, 0.1f);
-            renderer.FogDistance = 128.f;
+            renderer.FogDistance = 256.f;
             time = -1.f;
 
             // returned from the client game, so reload the server list.

@@ -49,7 +49,7 @@ namespace spades {
 		      fb(nullptr),
 		      inited(false),
 		      sceneUsedInThisFrame(false),
-		      fogDistance(128.f),
+		      fogDistance(256.f),
 		      fogColor(MakeVector3(0.f, 0.f, 0.f)),
 		      drawColorAlphaPremultiplied(MakeVector4(1, 1, 1, 1)),
 		      legacyColorPremultiply(false),
