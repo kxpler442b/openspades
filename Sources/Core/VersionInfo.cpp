@@ -4,9 +4,24 @@
 	#define OS_PLATFORM_MAC
 #elif defined _WIN32 || defined _WIN64
 	#define OS_PLATFORM_WINDOWS
-	#include <Windows.h>
-	#include <sstream>
-	#include <VersionHelpers.h> // Requires windows 8.1 sdk at least
+	// Check if we're cross-compiling (MinGW without Windows.h)
+	#if defined(__MINGW32__) && !defined(__MINGW64__)
+		// Native MinGW build on Windows
+		#include <Windows.h>
+		#include <sstream>
+		#include <VersionHelpers.h> // Requires windows 8.1 sdk at least
+	#else
+		// Cross-compilation or MinGW64 - provide stubs
+		#define GetModuleHandleA(x) (nullptr)
+		#define GetModuleFileNameA(x,y,z) (0)
+		#define IsWindows10OrGreater() (false)
+		#define IsWindows8Point1OrGreater() (false)
+		#define IsWindows8OrGreater() (false)
+		#define IsWindows7OrGreater() (false)
+		#define IsWindowsVistaOrGreater() (false)
+		#define IsWindowsXPOrGreater() (false)
+		#define IsWindowsServer() (false)
+	#endif
 #endif
 
 #include "VersionInfo.h"

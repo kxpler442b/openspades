@@ -398,10 +398,6 @@ namespace spades {
 			}
 		}
 
-		float GLRenderer::GetFogDistance() {
-			return fogDistance;
-		}
-
 		Vector3 GLRenderer::GetFogColorForSolidPass() {
 			if (settings.r_fogEnabled && settings.r_fogShadow && mapShadowRenderer) {
 				return MakeVector3(0, 0, 0);
@@ -1083,8 +1079,6 @@ namespace spades {
 			// Resample the rendered image using a non-trivial filter if such
 			// a filter is selected.
 			int scaleFilter = settings.r_scaleFilter;
-			bool scalingMayBeNeeded = GetRenderWidth() != device->ScreenWidth() ||
-			                          GetRenderHeight() != device->ScreenHeight();
 			if (scaleFilter == 0) {
 				// Nearest neighbor - trivial
 			} else if (scaleFilter == 1) {

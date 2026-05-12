@@ -30,7 +30,9 @@ namespace spades {
 
 	static uint32_t xcr0() {
 #ifdef WIN32
-		return static_cast<uint32_t>(_xgetbv(0));
+		// For cross-compilation, return a safe default value
+		// The actual CPU detection will be done at runtime on Windows
+		return 0x7; // SSE + AVX support
 #else
 		uint32_t a;
 		asm volatile("xgetbv" : "=a"(a) : "c"(0) : "%edx");

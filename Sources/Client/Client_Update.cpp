@@ -298,7 +298,7 @@ namespace spades {
 
 			GameMap::RayCastResult minResult;
 			float minDist = 1.e+10f;
-			Vector3 minShift;
+			Vector3 minShift = Vector3::Make(0, 0, 0);
 
 			// check collision
 			if (freeState.velocity.GetLength() < .01) {
@@ -1117,7 +1117,7 @@ namespace spades {
 			              ? clientPlayer->GetMuzzlePosition()
 			              : clientPlayer->GetMuzzlePositionInFirstPersonView();
 
-			float vel;
+			float vel = 0.0f;
 			switch (player.GetWeapon().GetWeaponType()) {
 				case RIFLE_WEAPON: vel = 700.f; break;
 				case SMG_WEAPON: vel = 360.f; break;

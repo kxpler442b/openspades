@@ -105,6 +105,7 @@ namespace spades {
 
 			void SetFogDistance(float) { OnProhibitedAction(); }
 			void SetFogColor(Vector3) { OnProhibitedAction(); }
+			float GetFogDistance() { OnProhibitedAction(); return 0.0f; }
 
 			void StartScene(const SceneDefinition &) { OnProhibitedAction(); }
 

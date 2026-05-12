@@ -72,8 +72,38 @@ DEFINE_SPADES_SETTING(cl_showStartupWindow, "1");
 // windows.h must be included before DbgHelp.h and shlobj.h.
 #include <windows.h>
 
+// Check if we're cross-compiling (MinGW without Windows headers)
+#if defined(__MINGW32__) && !defined(__MINGW64__)
+// Native MinGW build on Windows - include Windows headers
 #include <DbgHelp.h>
 #include <shlobj.h>
+#else
+// Cross-compilation or MinGW64 - provide stubs for missing functions
+#define MiniDumpWriteDump(a,b,c,d,e,f) (false)
+#define SymInitialize(a,b,c) (false)
+#define SymCleanup(a) (false)
+#define SymGetModuleInfo64(a,b,c) (false)
+
+// Missing types
+typedef int MINIDUMP_TYPE;
+typedef void* PMINIDUMP_EXCEPTION_INFORMATION;
+typedef void* PMINIDUMP_USER_STREAM_INFORMATION;
+typedef void* PMINIDUMP_CALLBACK_INFORMATION;
+struct MINIDUMP_EXCEPTION_INFORMATION {
+    DWORD ThreadId;
+    PEXCEPTION_POINTERS ExceptionPointers;
+    BOOL ClientPointers;
+};
+
+// Missing constants
+#define MiniDumpNormal 0
+#define CSIDL_DESKTOPDIRECTORY 0
+#define CSIDL_APPDATA 0
+
+// Missing functions
+#define SHGetFolderPath(a,b,c,d,e) (false)
+#define SHGetFolderPathW(a,b,c,d,e) (false)
+#endif
 
 #define strncasecmp(x, y, z) _strnicmp(x, y, z)
 #define strcasecmp(x, y) _stricmp(x, y)

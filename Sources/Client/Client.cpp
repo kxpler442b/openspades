@@ -109,7 +109,7 @@ namespace spades {
 			SPADES_MARK_FUNCTION();
 			SPLog("Initializing...");
 
-			renderer->SetFogDistance(256.f);
+			renderer->SetFogDistance(512.f);
 			renderer->SetFogColor(MakeVector3(.8f, 1.f, 1.f));
 
 			chatWindow = stmp::make_unique<ChatWindow>(this, &GetRenderer(),
@@ -515,7 +515,7 @@ namespace spades {
 		}
 
 		void Client::ShowAlert(const std::string &contents, AlertType type) {
-			float timeout;
+			float timeout = 0.0f;
 			switch (type) {
 				case AlertType::Notice: timeout = 2.5f; break;
 				case AlertType::Warning: timeout = 3.f; break;

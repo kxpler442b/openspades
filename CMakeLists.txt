@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.5)
 project(OpenSpades)
 
 set(OpenSpades_VERSION_MAJOR 0)
@@ -91,9 +91,12 @@ else()
 	if(NOT OpusFile_FOUND)
 		message(FATAL_ERROR "libopus/libopusfile not found, please install it (and make sure it's in your path)")
 	endif()
-	include(cmake/FindXext.cmake)
-	if(NOT XEXT_FOUND)
-		message(FATAL_ERROR "libXext, please install it (and make sure it's in your path)")
+	# Xext is only needed for Linux/X11, not for Windows
+	if(NOT WIN32)
+		include(cmake/FindXext.cmake)
+		if(NOT XEXT_FOUND)
+			message(FATAL_ERROR "libXext, please install it (and make sure it's in your path)")
+		endif()
 	endif()
 endif()
 
@@ -117,6 +120,7 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 		-Wall
 		-Wextra
 		-Wno-unknown-pragmas #learn_more: output is spammed like shit by all those #pragma mark items
+		-Wno-unused-parameter # Fix unused parameter warnings
 	)
 
 	if(CMAKE_BUILD_TYPE MATCHES "Release")

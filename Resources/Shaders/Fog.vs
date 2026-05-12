@@ -18,11 +18,18 @@
  
  */
 
+uniform float fogDistance;
+
 vec4 FogDensity(float poweredLength) {
+	// If fog distance is very large (fog disabled), return zero fog density
+	if (fogDistance > 100000.f) {
+		return vec4(0.0);
+	}
+	
 	float distance = poweredLength;
 	distance = min(distance * (1. / 128. / 128.), 1.);
 	float weakenedDensity = 1. - distance;
 	weakenedDensity *= weakenedDensity;
 	return mix(vec4(distance), vec4(1. - weakenedDensity),
-					 vec4(0., 0.3, 1.0, 0.0));
+				 vec4(0., 0.3, 1.0, 0.0));
 }

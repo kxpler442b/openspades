@@ -69,7 +69,8 @@ if(OPENSPADES_RESOURCES)
 			${PACKAGE_INFO_OUT_FILE}
 			${COMPILED_PAK_FILES})
 
-	if(WIN32)
+	if(CMAKE_SYSTEM_NAME STREQUAL "Windows" AND NOT MINGW)
+		# Native Windows build - use PowerShell
 		add_custom_command(
 			OUTPUT ${COMPILED_PAK_FILES}
 			COMMAND powershell -ExecutionPolicy Bypass 
@@ -78,7 +79,8 @@ if(OPENSPADES_RESOURCES)
 			COMMENT "Building paks"
 			DEPENDS ${PAK_IN_FILES} ${CMAKE_CURRENT_SOURCE_DIR}/mkpak.ps1
 			WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
-	elseif (UNIX)
+	else()
+		# Linux/Mac or Windows cross-compilation from Linux - use shell script
 		add_custom_command(
 			OUTPUT ${COMPILED_PAK_FILES}
 			COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/mkpak.sh
